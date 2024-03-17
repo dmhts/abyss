@@ -116,7 +116,7 @@ let package = Package(
 
 extension Package {
     static let repoOwner = "braintree"
-    static let repoName = "braintree-ios"
+    static let repoName = "braintree_ios"
     static let version = "6.14.0"
     static let mirrorBaseUrl = "https://github.com/dmhts/binary-artifacts/raw/main"
 }
@@ -140,7 +140,12 @@ extension Target {
     private static func binaryTarget(name: String, checksum: String, swiftVersion: SwiftVersion) -> Target {
         return .binaryTarget(
             name: name,
-            url: "\(Package.mirrorBaseUrl)/\(Package.repoName)/\(Package.repoOwner)/\(Package.version)/\(swiftVersion)/\(name).xcframework.zip",
+            url: "\(Package.mirrorBaseUrl)/" +
+                 "\(Package.repoOwner)/" +
+                 "\(Package.repoName)/" +
+                 "\(Package.version)/" +
+                 "swift-\(swiftVersion.rawValue)/" +
+                 "\(name).xcframework.zip",
             checksum: checksum
         )
     }
